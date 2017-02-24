@@ -14,7 +14,7 @@ from random import choice
 
 from selenium import webdriver
 
-from config import AMAZON_URL, PROXY_CHECK_REQUESTS_TIMEOUT, PROXY_CHECK_CHROME_TIMEOUT
+from config import AMAZON_URL, PROXY_CHECK_REQUESTS_TIMEOUT
 
 
 def delete_proxy_from_pool(ip):

@@ -14,7 +14,7 @@ from utils.tasks import async_find_item
 if __name__ == "__main__":
     search_kw = 'kids canopy'
     target = 'Octorose ® Butterfly Bed Canopy Mosquito NET Crib Twin Full Queen King (purple)'
-    num = 32
+    num = 1
 
     for i in range(num):
         async_find_item.delay(search_kw=search_kw, target=target)
