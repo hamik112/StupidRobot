@@ -1,0 +1,30 @@
+version: '2.0'
+services:
+    redis:
+        image: redis
+        container_name: selenium_redis
+        ports:
+            - "6379:6379"
+    # celery:
+    #     image: celery
+    #     container_name: selenium_celery
+    #     links:
+    #         - redis:redis
+    #     environment:
+    #         - CELERY_BROKER_URL=redis://redis
+    #         - CELERY_APP=utils.tasks
+    #     depends_on:
+    #         - redis
+    #     volumes:
+    #         - .:/home/user
+    flower:
+        image: crgwbr/docker-celery-flower
+        container_name: selenium_celery_flower
+        ports:
+            - "5555:5555"
+        environment:
+            - CELERY_BROKER_URL=redis://redis
+        links:
+            - redis:redis
+        depends_on:
+            - redis
