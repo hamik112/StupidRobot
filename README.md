@@ -18,4 +18,4 @@ Find and click your item in Amazon automaticlly, using Python and Selenium.
 
 提Issue吧，反正我也不会修的，这个项目太蠢了(捂脸)
 
-相关技术：Python、Celery、Docker、Selenium
+相关技术：Python3、Celery、Docker、Selenium
