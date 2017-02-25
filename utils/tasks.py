@@ -16,7 +16,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
-from config import AMAZON_URL, DEFAULT_SLEEP_TIME_IN_PAGE, DRIVER_TIMEOUT
+from config import AMAZON_URL, DEFAULT_SLEEP_TIME_IN_PAGE, DRIVER_TIMEOUT, MAX_PAGE_NUM
 from utils.proxy import get_proxy
 from utils.logger import logger
 
@@ -45,6 +45,11 @@ def find_item(search_kw, target):
         page_num = 0
         while not find_item:
             page_num += 1
+            if page_num >= MAX_PAGE_NUM:
+                logger.error('超过{p}页仍未找到商品'.format(p=page_num))
+                driver.close()
+                return False
+
             try:
                 e = driver.find_element_by_link_text(target)
             except NoSuchElementException as e:
@@ -59,6 +64,7 @@ def find_item(search_kw, target):
                 logger.info('第{page_num}页未发现商品，进入下一页'.format(page_num=page_num))
                 next_url = driver.find_element_by_id('pagnNextLink').get_property('href')
                 driver.get(next_url)
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);");
     except NoSuchElementException as e:
         logger.error('未找到数据')
         ret = False

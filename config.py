@@ -16,4 +16,6 @@ AMAZON_URL = 'https://www.amazon.com'
 # 用requests检查代理的超时时间
 PROXY_CHECK_REQUESTS_TIMEOUT = 5
 # driver访问时的超时时间
-DRIVER_TIMEOUT = 180
+DRIVER_TIMEOUT = 120
+# 停止寻找的页数
+MAX_PAGE_NUM = 10

@@ -22,7 +22,7 @@ def delete_proxy_from_pool(ip):
 
 
 def get_proxy_from_pool():
-    proxies = requests.get('http://127.0.0.1:8000', params={'protocol': 1}).json()
+    proxies = requests.get('http://127.0.0.1:8000', params={'protocol': 1, 'types': 0}).json()
     random_proxy = choice(proxies)
     return random_proxy[0], random_proxy[1]
 
@@ -43,6 +43,6 @@ def check_proxy_in_requests(ip, port):
 def get_proxy():
     while True:
         proxy_ip, proxy_port = get_proxy_from_pool()
-        if not check_proxy_in_requests(proxy_ip, proxy_port):
-            continue
+        #  if not check_proxy_in_requests(proxy_ip, proxy_port):
+        #      continue
         return proxy_ip, proxy_port
